@@ -2,7 +2,7 @@
   <div id="app">
     <Search/>
     <Sort />
-    <Layout />
+    <Layout :data="data" />
   </div>
 </template>
 
@@ -23,7 +23,10 @@ export default {
       data: []
     }
   },
-  mounted() {
+  async mounted() {
+    const response = await fetch('http://localhost:3000/result');
+    const result = await response.json();
+    this.data = result.data;
   },
 }
 </script>

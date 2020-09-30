@@ -40,6 +40,10 @@
         padding: 26px
         border-radius: 10px
         @include boxShadow
+        &:nth-child(odd)
+            order: 1
+        &:nth-child(even)
+            order: 2
         .top
             height: 33px
             display: flex

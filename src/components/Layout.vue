@@ -1,6 +1,6 @@
 <template>
-    <div class="layout">
-        <Quote :quote="quoteData" />
+    <div class="layout" :style="style">
+        <Quote v-for="quote in data" :key="quote.id" :quote="quote" ref="quote" />
     </div>
 </template>
 
@@ -14,34 +14,30 @@
         },
         data() {
             return {
-                quoteData: {
-                    "id": "5e25adf5ca150f293e0e8e23",
-                    "content": "So I use a lot of 409",
-                    "type": "QUOTE",
-                    "tags": ["middle", "test"],
-                    "studies": [158],
-                    "created_by": {
-                        "name": "Admin",
-                        "surname": "Adminov",
-                        "email": "admin@usertrb.net",
-                        "client_id": 1046,
-                        "client": { "id": 1046, "name": "UserTribe" }
-                    },
-                    "video": { "id": 330 },
-                    "start_timestamp": 67.5,
-                    "end_timestamp": 69.2,
-                    "start": 67.5,
-                    "end": 69.2,
-                    "participant": {
-                        "id": 474,
-                        "name": "Notcopied",
-                        "email": "notcopied@aaa.com",
-                        "nationality": "Bangladesh",
-                        "age": 34
-                    }
+                height: 0
+            }
+        },
+        props: {
+            data: {
+                type: Array, 
+            },
+        },
+        computed: {
+            style() {
+                return {
+                    height: `${this.height}px`
                 }
             }
         },
+        updated(){
+            const columns = [0, 0]
+            const margin = getComputedStyle(this.$refs.quote[0].$el).marginTop.replace('px', '');
+            this.$refs.quote.forEach((q, index) => {
+                const order = index % 2 
+                columns[order] += q.$el.offsetHeight;
+            })
+            this.height = Math.max(...columns) + ((this.$refs.quote.length / 2) * (margin * 2)) + 100 
+        }
         
     }
 </script>
@@ -49,4 +45,6 @@
 <style lang="sass" scoped>
     .layout
         margin-top: 40px
+        display: flex
+        flex-flow: column wrap
 </style>
