@@ -48,5 +48,5 @@
 
 <style lang="sass" scoped>
     .layout
-        @include center($max-width, $min-width)
+        margin-top: 40px
 </style>

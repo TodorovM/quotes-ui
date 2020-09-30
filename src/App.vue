@@ -1,16 +1,22 @@
 <template>
   <div id="app">
-   <Layout />
+    <Search/>
+    <Sort />
+    <Layout />
   </div>
 </template>
 
 <script>
-import Layout from './components/Layout'
+import Layout from './components/Layout';
+import Search from './components/Search';
+import Sort from './components/Sort'
 
 export default {
   name: 'App',
   components: {
-    Layout
+    Layout,
+    Search,
+    Sort
   },
   data() {
     return {
@@ -27,6 +33,8 @@ export default {
   @include reset
   html, body
     background-color: $background
-    @include loadFont
   #app
+    @include loadFont
+    color: $text-color
+    @include center($max-width, $min-width)
 </style>
