@@ -1,42 +1,27 @@
 <template>
-    <div class="layout" :style="style">
+    <div class="layout">
         <Quote v-for="quote in data" :key="quote.id" :quote="quote" ref="quote" />
     </div>
 </template>
 
 <script>
     import Quote from './sub_component/Quote.vue'
+    import Masonry from 'masonry-layout'
 
     export default {
         name: 'layout',
         components: {
             Quote
         },
-        data() {
-            return {
-                height: 0
-            }
-        },
         props: {
             data: {
                 type: Array, 
             },
         },
-        computed: {
-            style() {
-                return {
-                    height: `${this.height}px`
-                }
-            }
-        },
-        updated(){
-            const columns = [0, 0]
-            const margin = getComputedStyle(this.$refs.quote[0].$el).marginTop.replace('px', '');
-            this.$refs.quote.forEach((q, index) => {
-                const order = index % 2 
-                columns[order] += q.$el.offsetHeight;
+        mounted(){
+            new Masonry('.layout', {
+                itemSelector: '.quote-block'
             })
-            this.height = Math.max(...columns) + ((this.$refs.quote.length / 2) * (margin * 2)) + 100 
         }
         
     }

@@ -40,4 +40,5 @@ export default {
     @include loadFont
     color: $text-color
     @include center($max-width, $min-width)
+    overflow-x: auto
 </style>
