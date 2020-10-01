@@ -73,6 +73,4 @@
 <style lang="sass" scoped>
     .layout
         margin-top: 40px
-        display: flex
-        flex-flow: column wrap
 </style>

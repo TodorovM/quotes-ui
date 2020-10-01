@@ -41,6 +41,7 @@
 
     .quote-block
         width: calc(#{100% / $number-of-columns} - #{$number-of-columns * $margins})
+        min-width: 320px
         margin: $margins
         background-color: white
         padding: 26px

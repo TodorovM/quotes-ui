@@ -45,6 +45,8 @@
         @include centerElements
         margin-top: 21px
         font-size: 15px
+        @media screen and (max-width: 556px)
+            flex-direction: column
         .sort-label
             color: $gray
 </style>

@@ -34,6 +34,8 @@
         margin: 0 10px
         cursor: pointer
         @include boxShadow
+        @media screen and (max-width: 556px)
+            margin: 18px 0
         .arrow
             fill: $gray
             width: 20px

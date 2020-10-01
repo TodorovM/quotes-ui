@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <Search/>
-    <Sort />
-    <Layout/>
+    <div class="container">
+      <Search/>
+      <Sort />
+      <Layout/>
+    </div>
   </div>
 </template>
 
@@ -35,5 +37,8 @@ export default {
   #app
     @include loadFont
     color: $text-color
-    @include center($max-width, $min-width)
+    @include center($max-width)
+    overflow-x: auto
+    .container
+      min-width: 320px
 </style>

@@ -50,6 +50,8 @@
                 border: 0
                 font-weight: 200
                 font-family: inherit
+                width: 60%
+                text-overflow: ellipsis
                 &:focus
                     outline: none
 </style>
