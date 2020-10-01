@@ -11,7 +11,8 @@
         name: 'Order',
         data() {
             return {
-                categories: ['nationality', 'name']
+                categories: ['nationality', 'name'],
+                sortingBy: 'nationality'
             }
         },
         components: {
@@ -20,8 +21,18 @@
         methods: {
             click(e) {
                 const item = this.$refs.sort.find(({$el}) => $el === e.target)
-                if (item) console.log(item)
+                const selected = this.$refs.sort.find(el => el.selected)
+                if (item) {
+                    item.selected = true;
+                    if(selected !== item) selected.selected = false;
+                    this.sortingBy = item.category;
+                    item.ascending = !item.ascending;
+                    }
             }
+        },
+        mounted () {
+            this.$refs.sort.find(el => el.category === this.sortingBy).selected = true;
+
         },
     }
 </script>

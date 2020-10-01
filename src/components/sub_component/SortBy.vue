@@ -1,7 +1,7 @@
 <template>
     <div :class="['sort', {selected: selected}]">
         Participant {{ category }}
-        <ArrowDown class="arrow" />
+        <ArrowDown :class="['arrow', {ascending: ascending}]" />
     </div>
 </template>
 
@@ -14,13 +14,14 @@
         },
         data() {
             return {
-                selected: false
+                selected: false,
+                ascending: false,
             }
         },
         props: {
             category: {
                 type: String
-            },
+            }
         },
     }
 </script>
@@ -37,6 +38,10 @@
             fill: $gray
             width: 20px
             vertical-align: middle
+            transition: .5s
+            transform-origin: center
+            &.ascending
+                transform: rotate(-180deg)
         &.selected
             color: $blue
             .arrow
