@@ -27,8 +27,8 @@
                     item.selected = true;
                     if(selected !== item) selected.selected = false;
                     this.sortingBy = item.category;
-                    item.ascending = !item.ascending;
-                    EventBus.$emit('sort_items', {category: item.category, ascending: item.ascending})
+                    item.descending = !item.descending;
+                    EventBus.$emit('sort_items', {category: item.category, descending: item.descending})
                     }
             },
         },

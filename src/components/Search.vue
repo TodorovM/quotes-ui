@@ -2,17 +2,28 @@
     <div class="search">
         <div class="search-box">
             <Magnifier class="magnifier" />
-            <input type="text" class="search-input" placeholder="Search">
+            <input v-model="inputData" type="text" class="search-input" placeholder="Search" @keyup="search">
         </div>
     </div>
 </template>
 
 <script>
     import Magnifier from '@/assets/graphics/icons/magnifier.svg'
+    import EventBus from "../utils/eventBus"
     export default {
         name: 'Search',
         components: {
             Magnifier,
+        },
+        data() {
+            return {
+                inputData: ""
+            }
+        },
+        methods: {
+            search() {
+               EventBus.$emit('search', this.inputData)
+            }
         },
     }
 </script>

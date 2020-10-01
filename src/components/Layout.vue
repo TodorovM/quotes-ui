@@ -27,9 +27,12 @@
             }
         },
         methods: {
-            sort(category, ascending) {
+            sort(category, descending) {
                 this.sorted = this.sorted.sort((a,b) => a.participant[category].localeCompare(b.participant[category]))
-                if (ascending) this.sorted = this.sorted.reverse();
+                if (descending) this.sorted = this.sorted.reverse();
+            },
+            search(text) {
+                this.sorted = this.quotes.filter(q => q.content.toLowerCase().includes(text.toLowerCase()))
             }
         },
         mounted(){
@@ -40,8 +43,12 @@
                 this.sort('nationality', false)
             });
 
-            EventBus.$on('sort_items', ({category, ascending}) => {
-                this.sort(category, ascending)
+            EventBus.$on('sort_items', ({category, descending}) => {
+                this.sort(category, descending)
+            })
+
+            EventBus.$on('search', e => {
+                this.search(e)
             })
             
         },
@@ -49,7 +56,6 @@
             if(!this.masonry) {
                 this.masonry = new Masonry('.layout', { itemSelector: '.quote-block' })
             }
-            console.log()
             this.masonry.reloadItems();
             this.masonry.layout()
         }
