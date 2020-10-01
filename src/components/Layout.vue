@@ -18,9 +18,9 @@
                 type: Array, 
             },
         },
-        mounted(){
+        updated(){
             new Masonry('.layout', {
-                itemSelector: '.quote-block'
+                itemSelector: '.quote-block',
             })
         }
         

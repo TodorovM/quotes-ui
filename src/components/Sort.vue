@@ -1,7 +1,7 @@
 <template>
-    <div class="sort-container">
+    <div class="sort-container" @click="click">
         <p class="sort-label">Sort by: </p>
-        <SortBy v-for="(category, index) in categories" :key="index" :category="category" />
+        <SortBy v-for="(category, index) in categories" :key="index" :category="category" ref="sort" />
     </div>
 </template>
 
@@ -16,6 +16,12 @@
         },
         components: {
             SortBy,
+        },
+        methods: {
+            click(e) {
+                const item = this.$refs.sort.find(({$el}) => $el === e.target)
+                if (item) console.log(item)
+            }
         },
     }
 </script>

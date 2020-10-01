@@ -31,6 +31,7 @@
         background-color: white
         border-radius: 50px
         margin: 0 10px
+        cursor: pointer
         @include boxShadow
         .arrow
             fill: $gray
