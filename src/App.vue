@@ -2,7 +2,7 @@
   <div id="app">
     <Search/>
     <Sort />
-    <Layout :data="data" />
+    <Layout/>
   </div>
 </template>
 
@@ -10,6 +10,7 @@
 import Layout from './components/Layout';
 import Search from './components/Search';
 import Sort from './components/Sort'
+import EventBus from './utils/eventBus'
 
 export default {
   name: 'App',
@@ -18,15 +19,10 @@ export default {
     Search,
     Sort
   },
-  data() {
-    return {
-      data: []
-    }
-  },
   async mounted() {
     const response = await fetch('http://localhost:3000/result');
     const result = await response.json();
-    this.data = result.data;
+    EventBus.$emit('data_loaded', result.data)
   },
 }
 </script>

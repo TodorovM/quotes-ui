@@ -7,6 +7,7 @@
 
 <script>
     import SortBy from "./sub_component/SortBy"
+    import EventBus from "../utils/eventBus"
     export default {
         name: 'Order',
         data() {
@@ -27,8 +28,9 @@
                     if(selected !== item) selected.selected = false;
                     this.sortingBy = item.category;
                     item.ascending = !item.ascending;
+                    EventBus.$emit('sort_items', {category: item.category, ascending: item.ascending})
                     }
-            }
+            },
         },
         mounted () {
             this.$refs.sort.find(el => el.category === this.sortingBy).selected = true;
