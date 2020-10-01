@@ -2,7 +2,7 @@
     <div class="quote-block">
         <div class="top">
             <QuotationMark class="quotation-mark" />
-            <Close class="close-btn"/>
+            <Close class="close-btn" @mousedown="remove"/>
         </div>
         <div class="quote-content">
             <div class="quote-text"> {{ quote.content }} </div>
@@ -16,7 +16,8 @@
 
 <script>
     import QuotationMark from '@/assets/graphics/icons/quote.svg'
-    import Close from '@/assets/graphics/icons/x.svg'
+    import Close from '@/assets/graphics/icons/x.svg';
+    import EventBus from '../../utils/eventBus'
     export default {
         name: 'quote',
         components: {
@@ -27,7 +28,12 @@
             quote: {
                 type: Object
             }
-        }
+        },
+        methods: {
+            remove() {
+                EventBus.$emit('remove', this.quote.id)
+            }
+        },
     }
 </script>
 

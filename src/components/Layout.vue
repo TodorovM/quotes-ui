@@ -33,6 +33,10 @@
             },
             search(text) {
                 this.sorted = this.quotes.filter(q => q.content.toLowerCase().includes(text.toLowerCase()))
+            },
+            remove(id){
+                this.sorted = this.sorted.filter(q => q.id !== id)
+                this.quotes = this.quotes.filter(q => q.id !== id)
             }
         },
         mounted(){
@@ -51,6 +55,9 @@
                 this.search(e)
             })
             
+            EventBus.$on('remove', e => {
+                this.remove(e)
+            })
         },
         updated() {
             if(!this.masonry) {
